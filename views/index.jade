@@ -1,5 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div(style='width:400px')
+    h1= titile
+    p= location
+    p Upload a headshot to get started
+
+    form(action='/' method='post' enctype='multipart/form-data')
+      input(type='file' name='userPhoto')
+      input(type='submit' value='Upload Image' name='submit')
+    img(src= image)
