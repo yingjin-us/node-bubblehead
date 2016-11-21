@@ -16,7 +16,8 @@ router.post('/',(req,res,next) => {
   var imgSrc = req.file? req.file.path : '';
   Promise.resolve(imgSrc)
     .then(function detectFace(image){
-      console.log("TODO: detect face using Oxford API");
+      var oxfordClient = new oxford.Client(process.env.OXFORD_API);
+      return oxfordClient.face.detect({path:image,analyzesAge:true, analyzesGender:true});
     })
     .then(function generateBubblePermutations(response){
       console.log("TODO: generate multiple images with head rotated");
